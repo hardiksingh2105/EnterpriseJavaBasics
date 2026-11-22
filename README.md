@@ -7,75 +7,182 @@ Download these 2 files.
 2. Integrate JDK after installing by adding it to environment.
 
 # Lab-2 Implementation of student-management Project.
-Name:             student-management
-Language:         Java
-Type:             Maven
-Package name:     com.example.ucs067.studentmanagement
-Dependencies: Spring Web and Spring Boot Dev Tools.
+Student Management System
 
+A simple Student Management REST API built using **Java and Spring Boot** as part of Lab-2.
 
+## Project Details
 
+| Property | Details |
+|---|---|
+| Project Name | student-management |
+| Language | Java |
+| Build Tool | Maven |
+| Framework | Spring Boot |
+| Package Name | `com.example.ucs067.studentmanagement` |
+| Server Port | 8081 |
 
-Then we update the Hellocontroller.java
+## Technologies & Dependencies
 
-package com.example.ucs067.studentmanagement.controller;
+- Java
+- Spring Boot
+- Spring Web
+- Spring Boot DevTools
+- Maven
 
-import com.example.ucs067.studentmanagement.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+## Project Structure
 
-@RestController
-public class HelloController {
+```text
+student-management/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/example/ucs067/studentmanagement/
+│       │       ├── controller/
+│       │       │   └── HelloController.java
+│       │       ├── Student.java
+│       │       └── StudentManagementApplication.java
+│       └── resources/
+│           └── application.properties
+├── .gitignore
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── README.md
+```
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello, Spring Boot!";
-    }
+## Features
 
-    @GetMapping("/student")
-    public Student getStudent() {
-        return new Student(
-                1,
-                "Rahul",
-                "rahul@example.com"
-        );
-    }
+The application provides three REST API endpoints:
 
+### 1. Hello Endpoint
+
+**Method:** GET
+
+**URL:** `/hello`
+
+Returns a welcome message.
+
+**Response:**
+```text
+Hello, Spring Boot!
+```
+
+### 2. Get Single Student
+
+**Method:** GET
+
+**URL:** `/student`
+
+Returns details of a single student.
+
+**Response:**
+```json
+{
+  "id": 1,
+  "name": "Rahul",
+  "email": "rahul@example.com"
 }
-Try this http://localhost:8081/student
+```
 
-Modify HelloController file
+### 3. Get All Students
 
-package com.example.ucs067.studentmanagement.controller;
+**Method:** GET
 
-import java.util.List;
-import com.example.ucs067.studentmanagement.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+**URL:** `/students`
 
-@RestController
-public class HelloController {
+Returns a list of three students.
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello, Spring Boot!";
-    }
+**Response:**
+```json
+[
+  {
+    "id": 1,
+    "name": "Rahul",
+    "email": "rahul@example.com"
+  },
+  {
+    "id": 2,
+    "name": "Priya",
+    "email": "priya@example.com"
+  },
+  {
+    "id": 3,
+    "name": "Amit",
+    "email": "amit@example.com"
+  }
+]
+```
 
-    @GetMapping("/student")
-    public Student getStudent() {
-        return new Student(
-                1,
-                "Rahul",
-                "rahul@example.com"
-        );
-    }
+## Running the Project
 
-    @GetMapping("/students")
-    public List<Student> getStudents() {
-        return List.of(
-                new Student(1, "Rahul", "rahul@example.com"),
-                new Student(2, "Priya", "priya@example.com"),
-                new Student(3, "Amit", "amit@example.com")
-        );
-    }
-}
+### Prerequisites
+
+- Java JDK 17 or compatible version
+- Maven (optional, Maven Wrapper is included)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/student-management.git
+```
+
+### 2. Navigate to the Project Directory
+
+```bash
+cd student-management
+```
+
+### 3. Run the Application
+
+**Windows:**
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+**Linux / macOS:**
+```bash
+./mvnw spring-boot:run
+```
+
+### 4. Access the Application
+
+The application runs at:
+
+`http://localhost:8081`
+
+## API Endpoint Summary
+
+| HTTP Method | Endpoint | Description |
+|---|---|---|
+| GET | `/hello` | Returns greeting message |
+| GET | `/student` | Returns a single student |
+| GET | `/students` | Returns all students |
+
+## Testing
+
+The endpoints can be tested using:
+
+- Web Browser
+- Postman
+- Thunder Client
+
+## Implementation Concepts
+
+- Spring Boot application setup
+- REST API development
+- HTTP GET requests
+- Spring MVC REST controllers
+- Java classes and objects
+- Java Lists
+- JSON responses
+
+## Author
+
+Student Management Project — Lab-2
+
+---
+
+# Lab-3 
+
+ 
