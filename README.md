@@ -177,12 +177,6 @@ The endpoints can be tested using:
 - Java Lists
 - JSON responses
 
-## Author
-
-Student Management Project — Lab-2
-
----
-
 # Lab-3 
 
  
