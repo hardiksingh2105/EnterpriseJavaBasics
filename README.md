@@ -429,6 +429,7 @@ After completing the repository, a student should be able to prepare a Java/Mave
 ## Conclusion
 
 `EnterpriseJavaBasics` preserves the learning progression across Labs 1–7. Labs 2 and 3 demonstrate the initial in-memory implementations. The final `student-management` project consolidates Labs 4–7 into a maintainable controller–service–repository application backed exclusively by PostgreSQL.
+<<<<<<< HEAD
 
 
 ## Push to GitHub
@@ -445,3 +446,5 @@ git push -u origin main
 ```
 
 Before committing, inspect `git status` and confirm that no real `.env` file, database password, IDE secrets or build output is staged. The included GitHub Actions workflow verifies each of the three Maven projects independently on Java 17.
+=======
+>>>>>>> 8ab0b5221f7a8a6442fa51c78c6bd1fb8aa2b9eb
