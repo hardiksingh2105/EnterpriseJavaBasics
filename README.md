@@ -177,6 +177,83 @@ The endpoints can be tested using:
 - Java Lists
 - JSON responses
 
-# Lab-3 
+---
+
+## Lab-3: Implementation of CRUD Operations
+
+This experiment extends the existing Student Management REST API by implementing CRUD (Create, Read, Update, Delete) operations.
+
+### Objective
+
+To implement REST API endpoints that allow users to create, retrieve, update, and delete student records using HTTP requests and JSON data.
+
+### Implementation
+
+The application uses an in-memory `ArrayList<Student>` to store student records temporarily.
+
+The following operations are implemented:
+
+| Operation | HTTP Method | Endpoint | Description |
+|---|---|---|---|
+| Create | POST | `/students` | Add a new student |
+| Read | GET | `/students` | Retrieve all students |
+| Read | GET | `/students/{id}` | Retrieve a student by ID |
+| Update | PUT | `/students/{id}` | Update student details |
+| Delete | DELETE | `/students/{id}` | Delete a student by ID |
+
+### JSON Request Example
+
+**Add Student (POST)**
+
+```json
+{
+  "id": 4,
+  "name": "Neha",
+  "email": "neha@example.com"
+}
+```
+
+**Update Student (PUT)**
+
+```json
+{
+  "id": 2,
+  "name": "Priya Sharma",
+  "email": "priya.sharma@example.com"
+}
+```
+
+### Concepts Implemented
+
+- Java ArrayList and List
+- In-memory data storage
+- HTTP POST, GET, PUT and DELETE requests
+- `@PostMapping`, `@GetMapping`, `@PutMapping`, `@DeleteMapping`
+- `@RequestBody` for receiving JSON data
+- `@PathVariable` for extracting URL parameters
+- `ResponseEntity` for HTTP responses
+- Iterator for safely removing elements
+- HTTP 404 Not Found error handling
+
+### Error Handling
+
+The application returns HTTP `404 Not Found` when a requested student ID does not exist.
+
+### Testing
+
+All CRUD operations were tested using Postman and cURL.
+
+### Storage Limitation
+
+Student records are stored in an in-memory ArrayList. Changes remain available while the application is running but are lost when the application restarts.
+
+Database integration is not implemented in this experiment.
+
+### Result
+
+Successfully implemented and tested CRUD operations for the Student Management REST API using Spring Boot.
+
+
+
 
  
