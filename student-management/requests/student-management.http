@@ -1,0 +1,120 @@
+@baseUrl = http://localhost:8081
+@demoStudentId = 9001
+@validationStudentId = 9002
+
+### 0A. Optional cleanup: remove a previous run's demonstration student (404 is okay if absent)
+DELETE {{baseUrl}}/students/{{demoStudentId}}
+
+### 0B. Optional cleanup: remove a previous run's validation demonstration student
+DELETE {{baseUrl}}/students/{{validationStudentId}}
+
+### 1. Hello endpoint
+GET {{baseUrl}}/hello
+
+### 2. Lab 2 predefined student endpoint
+GET {{baseUrl}}/student
+
+### 3. Create a student for the CRUD/search/course scenarios
+POST {{baseUrl}}/students
+Content-Type: application/json
+
+{
+  "id": 9001,
+  "name": "Neha",
+  "email": "neha@example.com"
+}
+
+### 4. Get all persisted students
+GET {{baseUrl}}/students
+
+### 5. Get the demonstration student by ID
+GET {{baseUrl}}/students/9001
+
+### 6. Update the demonstration student
+PUT {{baseUrl}}/students/9001
+Content-Type: application/json
+
+{
+  "id": 9001,
+  "name": "Neha Sharma",
+  "email": "neha.sharma@example.com"
+}
+
+### 7. Search by exact name (expects the student created above)
+GET {{baseUrl}}/students/search/name/Neha%20Sharma
+
+### 8. Search by partial name
+GET {{baseUrl}}/students/search/name/contains/Neha
+
+### 9. Search by email
+GET {{baseUrl}}/students/search/email/neha.sharma@example.com
+
+### 10. Paginated results
+GET {{baseUrl}}/students/page?page=0&size=2
+
+### 11. Students sorted by name
+GET {{baseUrl}}/students/sort/name
+
+### 12. Get all courses
+GET {{baseUrl}}/courses
+
+### 13. Add a course to the demonstration student
+POST {{baseUrl}}/students/9001/courses
+Content-Type: application/json
+
+{
+  "courseName": "Enterprise Java",
+  "credits": 4
+}
+
+### 14. Retrieve the student and verify courses are included without recursive JSON
+GET {{baseUrl}}/students/9001
+
+### 15. Invalid student POST: non-positive ID, blank name and malformed email (expect 400)
+POST {{baseUrl}}/students
+Content-Type: application/json
+
+{
+  "id": -5,
+  "name": "   ",
+  "email": "not-an-email"
+}
+
+### 16. Valid student POST for the PUT-validation scenarios
+POST {{baseUrl}}/students
+Content-Type: application/json
+
+{
+  "id": 9002,
+  "name": "Karan",
+  "email": "karan@example.com"
+}
+
+### 17. Invalid student PUT: blank name and invalid email (expect 400; database row must remain unchanged)
+PUT {{baseUrl}}/students/9002
+Content-Type: application/json
+
+{
+  "id": 9002,
+  "name": "",
+  "email": "invalid-email"
+}
+
+### 18. Valid student PUT
+PUT {{baseUrl}}/students/9002
+Content-Type: application/json
+
+{
+  "id": 9002,
+  "name": "Karan Mehta",
+  "email": "karan.mehta@example.com"
+}
+
+### 19. Missing student ID (expect 404)
+GET {{baseUrl}}/students/999999
+
+### 20. Delete the course-owning student; associated courses should be cascade-deleted
+DELETE {{baseUrl}}/students/9001
+
+### 21. Delete the validation demo student
+DELETE {{baseUrl}}/students/9002
